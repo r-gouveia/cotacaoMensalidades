@@ -25,12 +25,18 @@ public class MensalidadeService {
             case MOTO -> valorBase = 70.00;
             default -> throw new IllegalArgumentException("Tipo inválido de veículo");
         }
+        return valorBase;
+    }
+
+    public double calcularFranquia(String cpf){
+        Associado associado = associadoRepository.findByCpf(cpf);
 
         double franquiaPercentualCarro = 0.08;
         double franquiaPercentualCaminhao = 0.12;
         double franquiaPercentualMoto = 0.5;
         double franquiaPercentualSUV = 0.12;
 
+        double valorBase= calcularMensalidade(cpf);
         switch (associado.getTipoVeiculo()){
             case CARRO -> valorBase *= franquiaPercentualCarro;
             case SUV -> valorBase *= franquiaPercentualSUV;
@@ -44,7 +50,6 @@ public class MensalidadeService {
         if(associado.getRegiao().equals("RJ") || associado.getRegiao().equals("SP")){
             valorBase *= 1.20;
         }
-
         return valorBase;
     }
 
