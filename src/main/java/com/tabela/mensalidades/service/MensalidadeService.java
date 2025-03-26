@@ -47,20 +47,12 @@ public class MensalidadeService {
         if (associado.getAge()<25){
             valorBase *=1.10;
         }
-        if(associado.getRegiao().equals("RJ") || associado.getRegiao().equals("SP")){
+        if(associado.getRegiao().equals("RJ") || associado.getRegiao().equals("SP") ||
+                associado.getRegiao().equals("MG") || associado.getRegiao().equals("RN") ||associado.getRegiao().equals("SC") ||
+                associado.getRegiao().equals("PR")){
             valorBase *= 1.20;
         }
         return valorBase;
     }
-
-    public Associado salvarAssociado(Associado associado){
-        return associadoRepository.save(associado);
-    }
-
-
-
-
-
-
 
 }
